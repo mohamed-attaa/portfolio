@@ -2,304 +2,758 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adam Portfolio-Procoder09</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Axia | Digital Craftsmanship</title>
+    <meta name="description" content="Minimalist, high-performance websites built with precision and purpose.">
+    
+    <!-- Styles & Libraries -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0c10;
+            color: #e5e9f0;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* custom scroll - minimal */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1e2229;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #5a6e8a;
+            border-radius: 4px;
+        }
+
+        html {
+            scroll-padding-top: 80px;
+        }
+
+        /* Header / Navbar - cleaner, less shadow */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 14px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(10, 12, 16, 0.85);
+            backdrop-filter: blur(12px);
+            transition: all 0.2s ease;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        header.sticky {
+            background: #0a0c10;
+            padding: 10px 6%;
+            border-bottom-color: rgba(255,255,255,0.1);
+        }
+
+        /* Logo */
+        .logo-wrapper {
+            display: flex;
+            align-items: center;
+        }
+        .nav-logo {
+            height: 42px;
+            width: auto;
+            max-width: 150px;
+           
+            transition: opacity 0.2s;
+        }
+        .logo-fallback {
+            font-weight: 700;
+            font-size: 1.5rem;
+            letter-spacing: -0.5px;
+            color: #f0f3fa;
+        }
+
+        /* navigation - subtle */
+        .navigation {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        .navigation a {
+            color: #b9c3d4;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+            position: relative;
+        }
+        .navigation a:hover {
+            color: #ffffff;
+        }
+        .navigation a.active-nav {
+            color: #ffffff;
+        }
+
+        /* mobile menu */
+        .menu-toggle {
+            display: none;
+            font-size: 1.6rem;
+            color: #e5e9f0;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        /* Buttons - flat, minimal shadow */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #2c3e4e;
+            color: white;
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 0.85rem;
+            letter-spacing: -0.2px;
+        }
+        .btn i {
+            transition: transform 0.2s;
+        }
+        .btn:hover {
+            background: #3e5a6c;
+            transform: translateY(-2px);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        .btn-outline:hover {
+            background: rgba(255,255,255,0.05);
+            border-color: rgba(255,255,255,0.6);
+        }
+
+        /* Sections */
+        section {
+            padding: 90px 6%;
+        }
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: #ffffff;
+            text-align: center;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+        }
+        .section-sub {
+            text-align: center;
+            color: #8e9aaf;
+            max-width: 620px;
+            margin: 0 auto 48px auto;
+            font-size: 1rem;
+            font-weight: 400;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(rgba(10, 12, 16, 0.75), rgba(10, 12, 16, 0.85)), url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2072');
+            background-size: cover;
+            background-position: center;
+            box-shadow: inset 0 0 120px rgba(0,0,0,0.6);
+        }
+        .hero-content {
+            max-width: 600px;
+        }
+        .hero-content h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: #ffffff;
+        }
+        .hero-content h1 span {
+            color: #7f9eb5;
+            border-bottom: 2px solid #7f9eb5;
+        }
+        .hero-tagline {
+            font-size: 1.1rem;
+            color: #ebe4e4;
+            margin: 20px 0 24px;
+            font-weight: 400;
+            max-width: 480px;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        /* Cards */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 1.8rem;
+            margin-top: 20px;
+        }
+        .card-modern {
+            background: #12161f;
+            border-radius: 24px;
+            padding: 1.8rem;
+            transition: all 0.25s ease;
+            border: 1px solid #232a34;
+        }
+        .card-modern:hover {
+            transform: translateY(-4px);
+            border-color: #3f4e64;
+            background: #141a24;
+        }
+        .card-icon {
+            width: 56px;
+            margin-bottom: 18px;
+            opacity: 0.9;
+        }
+        .card-modern h3 {
+            font-size: 1.4rem;
+            margin: 12px 0 8px;
+            font-weight: 600;
+            color: #f0f3fa;
+        }
+        .card-modern p {
+            color: #9aa6bb;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        /* Features */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.8rem;
+        }
+        .feature-tile {
+            background: #11161f;
+            border-radius: 24px;
+            padding: 1.6rem;
+            transition: 0.2s;
+            border: 1px solid #232a34;
+        }
+        .feature-tile i {
+            font-size: 2rem;
+            color: #7f9eb5;
+            margin-bottom: 16px;
+        }
+        .feature-tile h3 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        .feature-tile p {
+            font-size: 0.85rem;
+            color: #8e9aaf;
+        }
+
+        /* Portfolio */
+        .portfolio-card {
+            background: #12161f;
+            border-radius: 24px;
+            overflow: hidden;
+            transition: 0.25s;
+            border: 1px solid #232a34;
+        }
+        .portfolio-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: 0.3s;
+        }
+        .portfolio-card:hover img {
+            transform: scale(1.02);
+        }
+        .portfolio-info {
+            padding: 1.2rem;
+        }
+        .portfolio-info h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .portfolio-info p {
+            font-size: 0.8rem;
+            color: #8e9aaf;
+        }
+
+        /* Offer */
+        .offer-wrapper {
+            background: #0f131c;
+            border-radius: 36px;
+            padding: 2.5rem;
+            text-align: center;
+            border: 1px solid #262e3a;
+        }
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 1.2rem;
+            margin: 28px 0;
+        }
+        .time-card {
+            background: #1a212c;
+            padding: 12px 18px;
+            border-radius: 20px;
+            min-width: 75px;
+        }
+        .time-card span {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #cbdbe6;
+        }
+
+        /* Contact */
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+        }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 12px 18px;
+            margin-bottom: 16px;
+            border-radius: 40px;
+            border: 1px solid #2a323e;
+            background: #0f131c;
+            color: #e5e9f0;
+            font-family: inherit;
+            transition: 0.2s;
+        }
+        .contact-form input:focus, .contact-form textarea:focus {
+            border-color: #6a86a3;
+            outline: none;
+        }
+        .contact-details i {
+            width: 32px;
+            color: #7f9eb5;
+        }
+        .contact-details a {
+            color: #cbd5e6;
+            text-decoration: none;
+        }
+
+        /* Floating WhatsApp Button (Fixed) */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.25s ease;
+            z-index: 1001;
+            text-decoration: none;
+            animation: pulse-whatsapp 1.5s infinite;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.08);
+            background-color: #20b358;
+            box-shadow: 0 8px 22px rgba(37, 211, 102, 0.4);
+        }
+        @keyframes pulse-whatsapp {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+            70% { box-shadow: 0 0 0 12px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        footer {
+            background: #07090e;
+            padding: 2rem 6%;
+            text-align: center;
+            border-top: 1px solid #1a1f28;
+            color: #7f8b9f;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .navigation {
+                position: fixed;
+                top: 68px;
+                left: -100%;
+                width: 65%;
+                height: calc(100vh - 68px);
+                background: #0c0f16;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 2rem;
+                gap: 1.5rem;
+                transition: 0.25s;
+                z-index: 999;
+                border-right: 1px solid #232a34;
+            }
+            .navigation.active {
+                left: 0;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .hero-content h1 { font-size: 2.3rem; }
+            .section-title { font-size: 1.9rem; }
+            .contact-layout { grid-template-columns: 1fr; }
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                font-size: 28px;
+                bottom: 18px;
+                right: 18px;
+            }
+        }
+        @media (max-width: 550px) {
+            .hero-buttons { flex-direction: column; align-items: stretch; }
+            .countdown { gap: 0.8rem; }
+            .time-card { padding: 8px 12px; min-width: 65px; }
+            .time-card span { font-size: 1.4rem; }
+        }
+    </style>
 </head>
 <body>
 
+<header id="header">
+    <div class="logo-wrapper">
+        <img class="nav-logo" src="./Image/Gemini_Generated_Image_q1hq8lq1hq8lq1hq.png" alt="Axia" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <span class="logo-fallback">AXIA</span>
+    </div>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menu"><i class="fas fa-bars"></i></button>
+    <div class="navigation" id="navMenu">
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#why">Why Us</a>
+        <a href="#process">Process</a>
+        <a href="#portfolio">Work</a>
+        <a href="#offer">Offer</a>
+        <a href="#contact">Contact</a>
+    </div>
+</header>
 
-    <header>
-        <a href="" class="brand" data-aos="zoom-in" data-aos-duration="1000">Adam</a>
-        <div class="menu-btn"></div>
-        <div class="navigation">
-            <a href="#main" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">Home</a>
-            <a href="#about"data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">About</a>
-            <a href="#skills" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">Skills</a>
-            <a href="#services" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">Services</a>
-            <a href="#work" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">Work</a>
-            <a href="#" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600">Contact</a>
+<!-- Hero -->
+<section class="hero" id="home">
+    <div class="hero-content" data-aos="fade-up" data-aos-duration="800">
+        <h1 data-aos="fade-right">Digital <span>precision</span><br> for modern brands</h1>
+        <div class="hero-tagline" data-aos="fade-left" data-aos-delay="150">
+            Web experiences that drive growth without the noise.
         </div>
-    </header>
-
-    <section class="main" id="main">
-        <div class="content">
-            <h2 data-aos="fade-right" data-aos-duration="1000" data-aos-delay="800">Hello, I'm <br><span>Adam Smith</span></h2>
-            <div class="animated-text" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="900">
-                <h3>Web Developer</h3>
-                <h3>Web Designer</h3>
-                <h3>Programmer</h3>
-            </div>
-            <a href="#" class="btn" data-aos="zoom-out" data-aos-duration="1000" data-aos-delay="1000">See My Work</a>
-            <div class="media-icons">
-                <a href="#" data-aos="fade-in" data-aos-duration="1000" data-aos-delay="1200"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" data-aos="fade-in" data-aos-duration="1000" data-aos-delay="1300"><i class="fab fa-instagram"></i></a>
-                <a href="#" data-aos="fade-in" data-aos-duration="1000" data-aos-delay="1400"><i class="fab fa-twitter"></i></a>
-                <a href="#" data-aos="fade-in" data-aos-duration="1000" data-aos-delay="1500"><i class="fab fa-github"></i></a>
-            </div>
+        <div class="hero-buttons">
+            <a href="#contact" class="btn"><i class="fas fa-arrow-right"></i> Start a project</a>
+            <a href="#portfolio" class="btn btn-outline">See work</a>
         </div>
-    </section>
+    </div>
+</section>
 
-<!--  About Section -->
-
-    <section class="about" id="about">
-        <div class="title reveal">
-            <h2 class="section-title" data-aos="fade-up" data-aos-duration="1000">About me</h2>
+<!-- Services -->
+<section id="services">
+    <h2 class="section-title" data-aos="fade-up">What we deliver</h2>
+    <p class="section-sub" data-aos="fade-up">Focused solutions that combine craft and clarity.</p>
+    <div class="grid-3">
+        <div class="card-modern" data-aos="zoom-in" data-aos-delay="100">
+            <img src="https://cdn-icons-png.flaticon.com/512/1055/1055687.png" class="card-icon" alt="business">
+            <h3>Business Websites</h3>
+            <p>Strategic brand hubs that convert visitors into clients.</p>
         </div>
-        <div class="content">
-            <div class="column col-left reveal">
-                <div class="img-card" data-aos="fade-right" data-aos-duration="2000" data-aos-delay="200">
-                    <img src="Image/img1.jpg" alt="">
-                </div>
-            </div>
-            <div class="column col-right reveal">
-                <h2 class="content-title" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">Hey There! I am Adam Smith</h2>
-                <p class="paragraph-text" data-aos="flip-up" data-aos-duration="1000" data-aos-delay="400">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<br><br>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                <a href="#" class="btn" data-aos="zoom-out-left" data-aos-duration="1000" data-aos-delay="600">See more</a>
-            </div>
+        <div class="card-modern" data-aos="zoom-in" data-aos-delay="200">
+            <img src="https://cdn-icons-png.flaticon.com/512/3991/3991733.png" class="card-icon" alt="landing">
+            <h3>Landing Pages</h3>
+            <p>Campaign-focused, high-impact conversion engines.</p>
         </div>
-    </section>
-
-<!-- Skill Section -->
-
-    <section class="skills" id="skills">
-        <div class="title">
-            <h2 class="section-title" data-aos="fade-up" data-aos-duration="1000">My Skills</h2>
+        <div class="card-modern" data-aos="zoom-in" data-aos-delay="300">
+            <img src="https://cdn-icons-png.flaticon.com/512/1055/1055666.png" class="card-icon" alt="redesign">
+            <h3>Redesign & Optimize</h3>
+            <p>Modernize speed, UX, and visual identity.</p>
         </div>
-        <div class="content">
-            <div class="column col-left">
-                <h2 class="content-title" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="200">My Skills and Experiences</h2>
-                <div class="paragraph-text" data-aos="flip-down" data-aos-duration="1000" data-aos-delay="300">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-                <a href="#" class="btn" data-aos="zoom-in-right" data-aos-duration="1000" data-aos-delay="400">See more</a>
-            </div>
-            <div class="column col-right">
-                <div class="bar">
-                    <div class="info" data-aos="flip-up" data-aos-duration="1000" data-aos-delay="100">
-                        <span>HTML</span>
-                        <span>95%</span>
-                    </div>
-                    <div class="line html" data-aos="zoom-in-right" data-aos-duration="1000" data-aos-delay="140"></div>
-                </div>
-                <div class="bar">
-                    <div class="info" data-aos="flip-up" data-aos-duration="1000" data-aos-delay="200">
-                        <span>CSS</span>
-                        <span>90%</span>
-                    </div>
-                    <div class="line css" data-aos="zoom-in-right" data-aos-duration="1000" data-aos-delay="240"></div>
-                </div>
-                <div class="bar">
-                    <div class="info" data-aos="flip-up" data-aos-duration="1000" data-aos-delay="300">
-                        <span>Javascript</span>
-                        <span>80%</span>
-                    </div>
-                    <div class="line javascript" data-aos="zoom-in-right" data-aos-duration="1000" data-aos-delay="340"></div>
-                </div>
-                <div class="bar">
-                    <div class="info" data-aos="flip-up" data-aos-duration="1000" data-aos-delay="400">
-                        <span>Python</span>
-                        <span>85%</span>
-                    </div>
-                    <div class="line python" data-aos="zoom-in-right" data-aos-duration="1000" data-aos-delay="440"></div>
-                </div>
-                <div class="bar">
-                    <div class="info" data-aos="flip-up" data-aos-duration="1000" data-aos-delay="500">
-                        <span>PHP</span>
-                        <span>65%</span>
-                    </div>
-                    <div class="line php" data-aos="zoom-in-right" data-aos-duration="1000" data-aos-delay="540"></div>
-                </div>
-            </div>
-        </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Services Section -->
-
-    <section class="services" id="services">
-        <div class="title">
-            <h2 class="section-title" data-aos="fade-up" data-aos-duration="1000">My Services</h2>
-            <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+<!-- Why Us -->
+<section id="why" style="background: #0b0e14;">
+    <h2 class="section-title" style="color:#ffffff;">Why Axia</h2>
+    <div class="feature-grid">
+        <div class="feature-tile" data-aos="flip-left">
+            <i class="fas fa-paint-brush"></i>
+            <h3>Bespoke Design</h3>
+            <p>No templates — every element intentional.</p>
         </div>
-        <div class="content">
-            <div class="card" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="400">
-                <div class="service-icon">
-                    <i class="fas fa-palette"></i>
-                </div>
-                <div class="info">
-                    <h3>Web Design</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-                </div>
-            </div>
-            <div class="card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
-                <div class="service-icon">
-                    <i class="fas fa-object-group"></i>
-                </div>
-                <div class="info">
-                    <h3>Motion Graphic Design</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-                </div>
-            </div>
-            <div class="card" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="400">
-                <div class="service-icon">
-                    <i class="fas fa-file-code"></i>
-                </div>
-                <div class="info">
-                    <h3>Web Development</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-                </div>
+        <div class="feature-tile" data-aos="flip-left" data-aos-delay="100">
+            <i class="fas fa-tachometer-alt"></i>
+            <h3>Lightning Code</h3>
+            <p>Fast, lean, and SEO‑ready.</p>
+        </div>
+        <div class="feature-tile" data-aos="flip-left" data-aos-delay="200">
+            <i class="fas fa-mobile-alt"></i>
+            <h3>Flawless responsive</h3>
+            <p>Perfect on every screen size.</p>
+        </div>
+        <div class="feature-tile" data-aos="flip-left" data-aos-delay="300">
+            <i class="fas fa-chart-line"></i>
+            <h3>Conversion first</h3>
+            <p>Built to turn attention into action.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Process -->
+<section id="process">
+    <h2 class="section-title" data-aos="fade-up">Simple process</h2>
+    <p class="section-sub" data-aos="fade-up">From idea to launch, with no friction.</p>
+    <div class="grid-3">
+        <div class="card-modern" data-aos="fade-right">
+            <i class="fas fa-comments" style="font-size: 2rem; color:#7f9eb5;"></i>
+            <h3>1. Discover</h3>
+            <p>Understand your goals, audience & market.</p>
+        </div>
+        <div class="card-modern" data-aos="fade-up">
+            <i class="fas fa-code" style="font-size: 2rem; color:#7f9eb5;"></i>
+            <h3>2. Design & Build</h3>
+            <p>Iterative design, clean code, fast delivery.</p>
+        </div>
+        <div class="card-modern" data-aos="fade-left">
+            <i class="fas fa-rocket" style="font-size: 2rem; color:#7f9eb5;"></i>
+            <h3>3. Launch & Support</h3>
+            <p>Deploy, monitor, and continuous improvement.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Portfolio -->
+<section id="portfolio">
+    <h2 class="section-title" data-aos="fade-up">Recent projects</h2>
+    <p class="section-sub" data-aos="fade-up">Real outcomes, measurable impact.</p>
+    <div class="grid-3">
+        <div class="portfolio-card" data-aos="zoom-in">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600" alt="fintech">
+            <div class="portfolio-info">
+                <h3>Fintech Dashboard</h3>
+                <p>SaaS · +43% conversions</p>
             </div>
         </div>
-    </section>
-
-<!-- Work Section -->
-    <section class="work" id="work">
-        <div class="title">
-            <h2 class="section-title" data-aos="fade-up" data-aos-duration="1000">My Work</h2>
-        </div>
-        <div class="content">
-            <div class="card" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="200">
-                <div class="card-img">
-                    <img src="Image/work1.jpg" alt="">
-                </div>
-            </div>
-            <div class="card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
-                <div class="card-img">
-                    <img src="Image/work2.jpg" alt="">
-                </div>
-            </div>
-            <div class="card" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
-                <div class="card-img">
-                    <img src="Image/work3.jpg" alt="">
-                </div>
-            </div>
-            <div class="card" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="400">
-                <div class="card-img">
-                    <img src="Image/work4.jpg" alt="">
-                </div>
-            </div>
-            <div class="card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
-                <div class="card-img">
-                    <img src="Image/work5.jpg" alt="">
-                </div>
-            </div>
-            <div class="card" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="400">
-                <div class="card-img">
-                    <img src="Image/work6.jpg" alt="">
-                </div>
+        <div class="portfolio-card" data-aos="zoom-in" data-aos-delay="100">
+            <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=600" alt="ecommerce">
+            <div class="portfolio-info">
+                <h3>Luxury E‑commerce</h3>
+                <p>2x higher AOV</p>
             </div>
         </div>
-    </section>
-    <section class="contact" id="contact">
-        <div class="title reveal">
-          <h2 class="section-title">Contact Me</h2>
+        <div class="portfolio-card" data-aos="zoom-in" data-aos-delay="200">
+            <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600" alt="startup">
+            <div class="portfolio-info">
+                <h3>Startup Launchpad</h3>
+                <p>+300% signups in 3 months</p>
+            </div>
         </div>
-        <div class="content">
-          <div class="row">
-            <div class="card reveal">
-              <div class="contact-icon">
-                <i class="fas fa-map-marker-alt"></i>
-              </div>
-              <div class="info">
-                <h3>Address</h3>
-                <span>Bercelona, Spain</span>
-              </div>
-            </div>
-            <div class="card reveal">
-              <div class="contact-icon">
-                <i class="fas fa-phone"></i>
-              </div>
-              <div class="info">
-                <h3>Phone</h3>
-                <span>+34566-839754</span>
-              </div>
-            </div>
-            <div class="card reveal">
-              <div class="contact-icon">
-                <i class="fas fa-envelope"></i>
-              </div>
-              <div class="info">
-                <h3>Email Address</h3>
-                <span>contact@email.com</span>
-              </div>
-            </div>
-            <div class="card reveal">
-              <div class="contact-icon">
-                <i class="fas fa-globe"></i>
-              </div>
-              <div class="info">
-                <h3>Website</h3>
-                <span>mywebsite.com</span>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="contact-form reveal">
-              <h3>Send Message</h3>
-              <div class="input-box">
-                <input type="text" name="" value="" placeholder="Name">
-              </div>
-              <div class="input-box">
-                <input type="text" name="" value="" placeholder="Email">
-              </div>
-              <div class="input-box">
-                <textarea name="name" rows="8" cols="80" placeholder="Message"></textarea>
-              </div>
-              <div class="input-box">
-                <input type="submit" class="send-btn" name="" value="Send">
-              </div>
-            </div>
-          </div>
+    </div>
+</section>
+
+<!-- Offer -->
+<section id="offer">
+    <div class="offer-wrapper" data-aos="flip-up">
+        <span style="background: #2c3e4e; padding: 4px 16px; border-radius: 30px; font-size: 0.8rem; font-weight: 500;">limited availability</span>
+        <h2 style="font-size: 1.8rem; margin: 18px 0 8px;">Exclusive launch pricing</h2>
+        <p>Secure a premium website at a special rate while we build our portfolio.<br><strong>Only 5 spots open</strong></p>
+        <div class="countdown" id="countdownTimer">
+            <div class="time-card"><span id="days">00</span><br>days</div>
+            <div class="time-card"><span id="hours">00</span><br>hrs</div>
+            <div class="time-card"><span id="minutes">00</span><br>min</div>
+            <div class="time-card"><span id="seconds">00</span><br>sec</div>
         </div>
-      </section>
-  
-      <footer class="footer">
-        <span class="footer-title">Mohamed atta</span>
-        <p>Copyright @2025 <a href="#">Mohamed Aatta</a>. All Rights Reserved.</p>
-      </footer>
+        <a href="#contact" class="btn" style="background:#2c3e4e; color:white;">Claim offer <i class="fas fa-gift"></i></a>
+    </div>
+</section>
 
+<!-- Contact with email integration (streetscreenservices@gmail.com) -->
+<section id="contact">
+    <h2 class="section-title" data-aos="fade-up">Let's create</h2>
+    <div class="contact-layout">
+        <div class="contact-details" data-aos="fade-right">
+            <p><i class="fas fa-envelope"></i> <strong>Email:</strong> <a href="mailto:streetscreenservices@gmail.com">streetscreenservices@gmail.com</a></p><br>
+            <p><i class="fab fa-whatsapp"></i> <strong>WhatsApp:</strong> <a href="https://wa.me/201012345678" target="_blank">+20 10 1234 5678</a></p><br>
+            <p><i class="fas fa-clock"></i> <strong>Response:</strong> &lt; 2 hours</p><br>
+            <div style="display: flex; gap: 18px; flex-wrap: wrap; margin-top: 20px;">
+                <span><i class="fas fa-check-circle"></i> Free consult</span>
+                <span><i class="fas fa-check-circle"></i> No hidden costs</span>
+                <span><i class="fas fa-check-circle"></i> 30-day support</span>
+            </div>
+        </div>
+        <div class="contact-form" data-aos="fade-left">
+            <form id="leadForm">
+                <input type="text" id="name" placeholder="Full name *" required>
+                <input type="email" id="email" placeholder="Email *" required>
+                <input type="tel" id="phone" placeholder="Phone (optional)">
+                <textarea rows="3" id="message" placeholder="Tell us about your project..."></textarea>
+                <button type="submit" class="btn" style="width:100%; justify-content:center;">Send inquiry <i class="fas fa-paper-plane"></i></button>
+            </form>
+            <p style="font-size: 0.7rem; margin-top: 12px;">No spam, just a clear conversation. We'll reply within 2h.</p>
+        </div>
+    </div>
+</section>
 
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script>
-      AOS.init({offset:0});
-    </script>
-    <script>
+<!-- Final CTA -->
+<section style="background: #0b0e14; text-align: center; padding: 60px 6%; border-top: 1px solid #1e232c;">
+    <h2 style="color:white; font-weight: 500;">Ready to elevate?</h2>
+    <p style="color:#9aa6bb; margin: 12px 0 24px;">Let's build something that works.</p>
+    <a href="#contact" class="btn">Start a conversation →</a>
+</section>
 
-        window.addEventListener("scroll", function(){
-    scrollBtn.classList.toggle("active", window.scrollY > 500);
-});
+<footer>
+    <h3 style="font-weight: 500; letter-spacing: -0.3px;">AXIA</h3>
+    <p>© 2026 — Precision digital agency</p>
+    <div class="trust-footer" style="display: flex; justify-content: center; gap: 24px; margin-top: 14px;">
+        <span>✔ Satisfaction first</span>
+        <span>✔ Fast delivery</span>
+        <span>✔ Clean code</span>
+    </div>
+</footer>
 
-//javascript for scroll back to top on click scroll-to-top button
+<!-- Fixed WhatsApp Icon (sticky on scroll) -->
+<a href="https://wa.me/201012345678" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+</a>
 
-// document.querySelector(".scrollToTop-btn").addEventListener("click", () => {
-//   document.body.scrollTop = 0;
-//   document.documentElement.scrollTop = 0;
-// });
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+    AOS.init({ duration: 700, once: true, offset: 60 });
 
-        const menuBtn = document.querySelector(".menu-btn");
-        const navigation = document.querySelector(".navigation");
-        const navigationItems = document.querySelector(".navigation a");
+    // sticky header
+    window.addEventListener('scroll', () => {
+        const header = document.getElementById('header');
+        if (header) header.classList.toggle('sticky', window.scrollY > 50);
+    });
 
-        menuBtn.addEventListener("click", () => {
-            menuBtn.classList.toggle("active");
-            navigation.classList.toggle("active");
-        })
+    // mobile menu toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navMenu = document.getElementById('navMenu');
+    if (menuToggle) {
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            const icon = menuToggle.querySelector('i');
+            if (navMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        document.querySelectorAll('.navigation a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                const icon = menuToggle.querySelector('i');
+                if (icon) {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        });
+    }
 
-        // Navigation Effects
-        window.addEventListener("scroll", function(){
-            const header = document.querySelector("header");
-            header.classList.toggle("sticky", window.scrollY > 0);
-        })
+    // countdown timer (7 days)
+    function initCountdown() {
+        const target = new Date();
+        target.setDate(target.getDate() + 7);
+        target.setHours(23, 59, 59, 999);
+        const interval = setInterval(() => {
+            const now = new Date().getTime();
+            const diff = target - now;
+            if (diff <= 0) {
+                clearInterval(interval);
+                ['days','hours','minutes','seconds'].forEach(id => document.getElementById(id).innerText = '00');
+                return;
+            }
+            const days = Math.floor(diff / (1000*60*60*24));
+            const hours = Math.floor((diff % (86400000)) / 3600000);
+            const mins = Math.floor((diff % 3600000) / 60000);
+            const secs = Math.floor((diff % 60000) / 1000);
+            document.getElementById('days').innerText = days < 10 ? '0'+days : days;
+            document.getElementById('hours').innerText = hours < 10 ? '0'+hours : hours;
+            document.getElementById('minutes').innerText = mins < 10 ? '0'+mins : mins;
+            document.getElementById('seconds').innerText = secs < 10 ? '0'+secs : secs;
+        }, 1000);
+    }
+    initCountdown();
 
-        navigationItems.forEach((navigationItem) => {
-            navigationItem.addEventListener("click", () => {
-                menuBtn.classList.remove("active");
-                navigation.classList.remove("active")
-            })
-        })
+    // CONTACT FORM: Email integration (mailto: streetscreenservices@gmail.com)
+    const form = document.getElementById('leadForm');
+    if (form) {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const message = document.getElementById('message').value.trim();
 
+            if (!name || !email) {
+                alert('Please fill in your name and email address.');
+                return;
+            }
 
+            const subject = `New inquiry from ${name} | Axia Website`;
+            const body = `Name: ${name}%0AEmail: ${email}%0APhone: ${phone}%0A%0AMessage:%0A${message}`;
+            const mailtoLink = `mailto:streetscreenservices@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+            window.location.href = mailtoLink;
+            
+            alert(`Thanks ${name}! Your email client will open to send your message to streetscreenservices@gmail.com. We'll respond within 2 hours.`);
+            form.reset();
+        });
+    }
 
-    </script>
+    // Active nav highlight on scroll
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.navigation a');
+    window.addEventListener('scroll', () => {
+        let current = '';
+        const scrollPos = window.scrollY + 100;
+        sections.forEach(section => {
+            const top = section.offsetTop;
+            const height = section.offsetHeight;
+            if (scrollPos >= top && scrollPos < top + height) {
+                current = section.getAttribute('id');
+            }
+        });
+        navLinks.forEach(link => {
+            link.classList.remove('active-nav');
+            const href = link.getAttribute('href').substring(1);
+            if (href === current) link.classList.add('active-nav');
+        });
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const targetId = this.getAttribute('href');
+            if (targetId === "#" || targetId === "") return;
+            const targetEl = document.querySelector(targetId);
+            if (targetEl) {
+                e.preventDefault();
+                targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+</script>
 </body>
 </html>

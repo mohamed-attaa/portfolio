@@ -20,7 +20,7 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: #000000d5;  /* خلفية سوداء عميقة ولكنها ليست موحشة */
+            background: #000000d5;
             color: #ededf2;
             overflow-x: hidden;
             scroll-behavior: smooth;
@@ -61,20 +61,20 @@
             top: 0;
             left: 0;
             width: 100%;
-            padding: 18px 6%;
+            padding: 15px 6%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            background: rgba(8, 8, 12, 0.85);
+            background: rgba(8, 8, 12, 0.92);
             backdrop-filter: blur(14px);
             transition: all 0.3s ease;
-            border-bottom: 1px solid rgba(0, 102, 255, 0.25);
+            border-bottom: 1px solid rgba(0, 102, 255, 0.3);
         }
 
         header.sticky {
             background: #000000;
-            padding: 12px 6%;
+            padding: 10px 6%;
             border-bottom-color: #0066ff;
             box-shadow: 0 8px 20px rgba(0, 102, 255, 0.2);
         }
@@ -82,10 +82,27 @@
         .logo-wrapper {
             display: flex;
             align-items: center;
+            gap: 10px;
         }
+
+        .nav-logo {
+            width: 45px;
+            height: 45px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 2px solid #0066ff;
+            filter: drop-shadow(0 0 6px rgba(0,102,255,0.6));
+            transition: 0.3s;
+        }
+
+        .nav-logo:hover {
+            transform: scale(1.08);
+            filter: drop-shadow(0 0 12px #0066ff);
+        }
+
         .logo-fallback {
             font-weight: 800;
-            font-size: 2rem;
+            font-size: 1.8rem;
             letter-spacing: -1px;
             background: linear-gradient(130deg, #ffffff, #3399ff);
             background-clip: text;
@@ -94,13 +111,15 @@
             text-shadow: 0 0 6px rgba(0,102,255,0.3);
             transition: 0.2s;
         }
+
         .logo-fallback:hover {
             text-shadow: 0 0 14px #0066ff;
         }
 
+        /* navigation for desktop */
         .navigation {
             display: flex;
-            gap: 2.2rem;
+            gap: 2rem;
             align-items: center;
         }
         .navigation a {
@@ -136,21 +155,23 @@
             font-weight: 600;
         }
 
+        /* زر القائمة للهواتف - يظهر فقط عند الحاجة */
         .menu-toggle {
             display: none;
-            font-size: 1.7rem;
+            font-size: 1.8rem;
             color: white;
             cursor: pointer;
             background: none;
             border: none;
             transition: 0.2s;
+            z-index: 1001;
         }
         .menu-toggle:hover {
             color: #0066ff;
             transform: scale(1.05);
         }
 
-        /* أزرار مميزة مع توهج أزرق */
+        /* أزرار مميزة */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -220,48 +241,38 @@
 
         /* Hero */
         .hero {
-    min-height: 92vh;
-    display: flex;
-    align-items: center;
-    position: relative;
-    background: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2072');
-    background-size: cover;
-    background-position: center;
-    overflow: hidden;
-}
-
-/* الشادو */
-.hero::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-        rgba(0, 0, 0, 0.35),
-        rgba(0, 0, 0, 0.55)
-    );
-    z-index: 1;
-}
-
-/* خلي المحتوى فوق الشادو */
-.hero-content {
-    position: relative;
-    z-index: 2;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            min-height: 92vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2072');
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.55));
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 650px;
+            animation: smoothFadeUp 0.9s ease-out;
+        }
+        @keyframes smoothFadeUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .hero-content h1 {
+            font-size: 3.6rem;
+            font-weight: 800;
+            line-height: 1.2;
+            color: #ffffff;
+        }
         .hero-content h1 span {
             color: #0066ff;
             border-bottom: 3px solid #0066ff;
@@ -276,7 +287,7 @@
             max-width: 520px;
         }
 
-        /* Grid & cards – أسود مع لمسات زرقاء */
+        /* Grid & cards */
         .grid-3 {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -389,7 +400,7 @@
             color: #9fa7bb;
         }
 
-        /* Offer card – glow effect */
+        /* Offer card */
         .offer-wrapper {
             background: #08080c;
             border-radius: 48px;
@@ -408,6 +419,7 @@
             justify-content: center;
             gap: 1.2rem;
             margin: 32px 0;
+            flex-wrap: wrap;
         }
         .time-card {
             background: #000000;
@@ -467,7 +479,7 @@
             text-shadow: 0 0 2px #0066ff;
         }
 
-        /* Floating WhatsApp – بتأثير أزرق */
+        /* Floating WhatsApp */
         .whatsapp-float {
             position: fixed;
             bottom: 28px;
@@ -481,7 +493,7 @@
             align-items: center;
             justify-content: center;
             font-size: 32px;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.3), 0 0 0 0 #0066ff;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.3);
             transition: all 0.25s ease;
             z-index: 1001;
             text-decoration: none;
@@ -506,87 +518,139 @@
             color: #8e9bb0;
         }
 
-        /* responsiveness */
+        /* ========== RESPONSIVE (موبايل وكل الأجهزة) ========== */
         @media (max-width: 900px) {
+            header {
+                padding: 12px 5%;
+            }
+            .menu-toggle {
+                display: block;  /* إظهار زر القائمة في الشاشات الصغيرة */
+            }
             .navigation {
                 position: fixed;
-                top: 72px;
+                top: 70px;
                 left: -100%;
-                width: 70%;
-                height: calc(100vh - 72px);
-                background: #000000ea;
+                width: 75%;
+                max-width: 320px;
+                height: calc(100vh - 70px);
+                background: #0a0a0f;
                 backdrop-filter: blur(20px);
                 flex-direction: column;
                 align-items: flex-start;
-                padding: 2rem;
-                gap: 1.8rem;
-                transition: 0.3s;
+                justify-content: flex-start;
+                padding: 2rem 1.8rem;
+                gap: 1.6rem;
+                transition: left 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
                 z-index: 999;
-                border-right: 1px solid #0066ff;
+                border-right: 2px solid #0066ff;
+                box-shadow: 4px 0 20px rgba(0,0,0,0.5);
             }
             .navigation.active {
                 left: 0;
             }
-            .menu-toggle {
-                display: block;
+            .navigation a {
+                font-size: 1.1rem;
+                width: 100%;
+                padding: 8px 0;
+                border-bottom: 1px solid rgba(0,102,255,0.2);
             }
-            .hero-content h1 { font-size: 2.6rem; }
-            .section-title { font-size: 2rem; }
-            .contact-layout { grid-template-columns: 1fr; }
-            .whatsapp-float { width: 52px; height: 52px; font-size: 28px; }
-            .countdown { gap: 0.8rem; }
-            .time-card { min-width: 68px; padding: 8px 12px; }
-            .time-card span { font-size: 1.6rem; }
-        }
-        @media (max-width: 550px) {
-            .hero-buttons { flex-direction: column; align-items: stretch; }
-            .btn { justify-content: center; }
+            .hero-content h1 {
+                font-size: 2.4rem;
+            }
+            .hero-tagline {
+                font-size: 1rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .contact-layout {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .whatsapp-float {
+                width: 52px;
+                height: 52px;
+                font-size: 28px;
+                bottom: 20px;
+                right: 20px;
+            }
+            .countdown {
+                gap: 0.8rem;
+            }
+            .time-card {
+                min-width: 70px;
+                padding: 8px 12px;
+            }
+            .time-card span {
+                font-size: 1.5rem;
+            }
+            .nav-logo {
+                width: 40px;
+                height: 40px;
+            }
+            .logo-fallback {
+                font-size: 1.5rem;
+            }
         }
 
-        /* Animate on scroll enhancements */
+        @media (max-width: 550px) {
+            section {
+                padding: 70px 5%;
+            }
+            .hero-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .btn {
+                justify-content: center;
+            }
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            .section-title {
+                font-size: 1.8rem;
+            }
+            .grid-3 {
+                gap: 1.2rem;
+            }
+            .card-modern {
+                padding: 1.4rem;
+            }
+            .time-card {
+                min-width: 60px;
+                padding: 6px 8px;
+            }
+            .time-card span {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* تحسينات إضافية للشاشات الصغيرة جداً */
+        @media (max-width: 380px) {
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.8rem;
+            }
+        }
+
         [data-aos] {
             transition-timing-function: cubic-bezier(0.2, 0.8, 0.4, 1);
         }
-
-
-
-
-
-
-
-
-.logo-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.nav-logo {
-    width: 50px;
-    height: 50px;
-    object-fit: cover; /* مهم عشان الصورة متتمطش */
-    border-radius: 50%; /* دي اللي بتخليها دايرة */
-    border: 2px solid #0066ff; /* optional شكل حلو */
-    filter: drop-shadow(0 0 6px rgba(0,102,255,0.6));
-    transition: 0.3s;
-}
-
-.nav-logo:hover {
-    transform: scale(1.08);
-    filter: drop-shadow(0 0 12px #0066ff);
-}
-
-
     </style>
 </head>
 <body>
 
 <header id="header">
-   <div class="logo-wrapper">
-    <img src="./Image/6b070cd9-cd7f-482c-9d74-63500e3f7ade.jfif" alt="Axia Logo" class="nav-logo">
-    <span class="logo-fallback">AX<span style="color:#0066ff;">I</span>A</span>
-</div>
-    <button class="menu-toggle" id="menuToggle" aria-label="Menu"><i class="fas fa-bars"></i></button>
+    <div class="logo-wrapper">
+        <img src="./Image/6b070cd9-cd7f-482c-9d74-63500e3f7ade.jfif" alt="Axia Logo" class="nav-logo" onerror="this.style.display='none'">
+        <span class="logo-fallback">AX<span style="color:#0066ff;">I</span>A</span>
+    </div>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+        <i class="fas fa-bars"></i>
+    </button>
     <div class="navigation" id="navMenu">
         <a href="#home">Home</a>
         <a href="#services">Services</a>
@@ -637,7 +701,7 @@
 
 <!-- Why Us -->
 <section id="why" style="background: #07070a;">
-    <h2 class="section-title" style="color:#ffffff;">Why Axia</h2>
+    <h2 class="section-title">Why Axia</h2>
     <div class="feature-grid">
         <div class="feature-tile" data-aos="flip-left">
             <i class="fas fa-paint-brush"></i>
@@ -767,7 +831,7 @@
 <footer>
     <h3 style="font-weight: 700; letter-spacing: -0.3px; color: white;">AXIA</h3>
     <p>© 2026 — Precision digital agency</p>
-    <div class="trust-footer" style="display: flex; justify-content: center; gap: 28px; margin-top: 14px;">
+    <div class="trust-footer" style="display: flex; justify-content: center; gap: 28px; margin-top: 14px; flex-wrap: wrap;">
         <span>✔ Satisfaction first</span>
         <span>✔ Fast delivery</span>
         <span>✔ Clean code</span>
@@ -788,11 +852,12 @@
         if (header) header.classList.toggle('sticky', window.scrollY > 60);
     });
 
-    // Mobile menu
+    // Mobile menu toggle (يظهر فوراً دون الحاجة للتمرير)
     const menuToggle = document.getElementById('menuToggle');
     const navMenu = document.getElementById('navMenu');
     if (menuToggle) {
-        menuToggle.addEventListener('click', () => {
+        menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
             navMenu.classList.toggle('active');
             const icon = menuToggle.querySelector('i');
             if (navMenu.classList.contains('active')) {
@@ -803,6 +868,8 @@
                 icon.classList.add('fa-bars');
             }
         });
+
+        // إغلاق القائمة عند الضغط على أي رابط داخلي
         document.querySelectorAll('.navigation a').forEach(link => {
             link.addEventListener('click', () => {
                 navMenu.classList.remove('active');
@@ -815,7 +882,7 @@
         });
     }
 
-    // Countdown (7 days)
+    // Countdown timer (7 days)
     function initCountdown() {
         const target = new Date();
         target.setDate(target.getDate() + 7);
@@ -864,7 +931,7 @@
         });
     }
 
-    // Active nav highlight
+    // Active nav highlight on scroll
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.navigation a');
     window.addEventListener('scroll', () => {
@@ -884,7 +951,7 @@
         });
     });
 
-    // Smooth scroll
+    // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             const targetId = this.getAttribute('href');
